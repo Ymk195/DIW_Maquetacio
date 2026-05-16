@@ -85,6 +85,7 @@ nav a:hover {
   width: 100%;
   height: 450px;
   object-fit: cover;
+  opacity: 0.9;
 }
 
 .texte_hero {
@@ -252,4 +253,153 @@ fieldset {
   border: 5px solid var(--azul-principal);
   padding: 1rem;
   border-radius: 6px;
+}
+
+/* Transicions E1 */
+
+/* Ex1.1 */
+.flex_galeria {
+  overflow: hidden;
+}
+.flex_galeria img {
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.flex_galeria img:hover {
+  transform: scale(1.1) rotate(2deg);
+  filter: grayscale(80%) brightness(70%);
+  border-color: var(--azul-accent);
+}
+
+/* Ex1.2 */
+.reserva_fixe {
+  transition: background-color 0.3s ease, padding 0.3s ease, border-radius 0.3s ease;
+}
+.reserva_fixe:hover {
+  background-color: var(--azul-principal);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+}
+/* Overflow ocultat als plats de la carta per la transició de les imatges peqrue no surtin fora del lloc */
+.plato {
+  overflow: hidden;
+}
+/* Transició hover imatges de la carta de scale, rotate i grayscale */
+.plato img {
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.plato img:hover {
+  transform: scale(1.1) rotate(2deg);
+  filter: grayscale(70%);
+}
+
+
+/* Animacions E2 */
+/* Ex2.1 */
+@keyframes apareix {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+    color: transparent;
+  }
+  40% {
+    opacity: 0.5;
+    transform: translateY(20px);
+    color: #ff8c00;
+  }
+  70% {
+    opacity: 0.85;
+    transform: translateY(8px);
+    color: #ff6600;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    color: var(--azul-principal);
+  }
+}
+.texte_hero h1, .texte_hero p {
+  animation: apareix 1.4s ease forwards;
+}
+.texte_hero p {
+  animation-delay: 0.3s;
+}
+
+/* Ex2.2 pulsació del botó reserva fix amb background-color, transform y box-shadow y tambe animation*/
+@keyframes pulsacio {
+  0%   { background-color: var(--azul-accent); transform: scale(1);    box-shadow: 0 0 0 rgba(43,108,176,0); }
+  33%  { background-color: #3a7fc1;            transform: scale(1.05); box-shadow: 0 4px 12px rgba(43,108,176,0.4); }
+  66%  { background-color: #1a5a9a;            transform: scale(1.08); box-shadow: 0 6px 18px rgba(43,108,176,0.6); }
+  100% { background-color: var(--azul-accent); transform: scale(1);    box-shadow: 0 0 0 rgba(43,108,176,0); }
+}
+/* El botó de reservar fa com una pulsacio si miras be */
+.reserva_fixe {
+  animation: pulsacio 2.5s ease-in-out infinite;
+}
+
+
+/* video responsive i centrat E3 */
+/* centrat i responsiu */
+.video_contenidor {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+}
+/* ocupa tot l'ample del contenidor i no surt fora */
+.video_contenidor video {
+  width: 100%;
+  display: block;
+}
+
+
+/* controls personalitzats del video E4 */
+/* Capa fosca sobre el vídeo amb les icones de control */
+.video_controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* Fons */
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.4rem 0.6rem;
+  border-bottom-left-radius: 6px;
+}
+/* Estil icona  */
+.icona_video {
+  color: var(--blanc);
+  cursor: pointer;
+  font-size: 1.8rem;
+  /* Transicio per efecte shadow */
+  transition: text-shadow 0.2s ease, color 0.2s ease;
+}
+/* Hover icona */
+.icona_video:hover {
+  color: #ffcc00;
+  text-shadow: 0 0 8px rgba(255, 204, 0, 0.8);
+}
+
+
+/* shrinnk amb scroll E5 */
+/* Transicio header */
+header {
+  transition: padding 0.3s ease, background-color 0.3s ease;
+}
+/* Classe que afegeix el js quan es fa scroll */
+header.petit {
+  background: rgba(30, 58, 95, 0.92);
+}
+header.petit .nav {
+  padding: 0.4rem 1rem;
+}
+
+/* responsive de vídeo a tablet i mòbil */
+@media (max-width: 768px) {
+  .video_contenidor {
+    width: 85%;
+  }
+}
+@media (max-width: 576px) {
+  .video_contenidor {
+    width: 100%;
+  }
 }

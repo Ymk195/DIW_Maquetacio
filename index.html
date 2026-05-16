@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Restaurant els coberts</title>
   <!-- icone del navegador -->
-  <link rel="icon" href="Imatges/image.png">
+  <link rel="icon" href="Imatges/Icona.png">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -65,7 +65,7 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
           <div class="flex_plats">
             <div class="plato">
-              <img src="Imatges/image.png" alt="Plat de pasta">
+              <img src="Imatges/pasta.jpg" alt="Plat de pasta">
               <span class="text_asobre">pasta</span> </div>
             <div class="plato">
               <img src="Imatges/image.png" alt="Plat d'entrants">
@@ -81,11 +81,11 @@
           <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
           <div class="flex_plats">
             <div class="plato">
-              <img src="Imatges/image.png" alt="Amanida fresca">
+              <img src="Imatges/amanida.jpg" alt="Amanida fresca">
               <span class="text_asobre">amanida</span>
             </div>
             <div class="plato">
-              <img src="Imatges/image.png" alt="Peix del dia">
+              <img src="Imatges/lefishaulava.jpg" alt="Peix del dia">
               <span class="text_asobre">peix</span>
             </div>
           </div>
@@ -108,6 +108,31 @@
         <img src="Imatges/image.png" alt="Imatge galeria 6">
         <img src="Imatges/image.png" alt="Imatge galeria 7">
         <img src="Imatges/image.png" alt="Imatge galeria 8">
+      </div>
+    </section>
+
+<!-- Exercici 3: Secció de vídeo del restaurant -->
+    <section id="video">
+      <h2>Vídeos del restaurant</h2>
+<!-- Contenidor del video amb els controls personalitzats (Exercici 4) -->
+      <div class="video_contenidor">
+        <!-- El video: parat i silenciat per defecte, sense controls nadius (Exercici 4) -->
+        <video id="mivideo" muted>
+          <source src="Imatges/video.mp4" type="video/mp4">
+          El teu navegador no suporta l'element de vídeo.
+        </video>
+        <!-- Capa fosca amb icones de control personalitzats (Exercici 4) -->
+        <div class="video_controls" aria-label="Controls del vídeo">
+          <!-- Icona play -->
+          <span class="material-icons icona_video" onclick="play_video()" title="Reproduir">play_circle</span>
+          <!-- Icona pause -->
+          <span class="material-icons icona_video" onclick="pause_video()" title="Pausar">pause_circle</span>
+          <!-- Icona volum -->
+          <span class="material-icons icona_video" onclick="volum_video()" title="Activar so">volume_up</span>
+          <!-- Icona silenci -->
+          <span class="material-icons icona_video" onclick="silenci_video()" title="Silenciar">volume_off</span>
+        </div>
+
       </div>
     </section>
 
@@ -165,5 +190,47 @@
       </div>
       </div>
     </footer>
+
+<!-- E5 js amb scroll -->
+  <script>
+    // --- NAVBAR SHRINK en fer scroll (Exercici 5.1) ---
+    window.addEventListener('scroll', function() {
+      var header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        /* Reduim el header quan l'usuari fa scroll avall */
+        header.classList.add('petit');
+      } else {
+        /* Tornem al tamany normal quan estem a dalt */
+        header.classList.remove('petit');
+      }
+    });
+
+    //Autoplay del vídeo en arribar a la secció (Exercici 5.2
+    var video = document.getElementById('mivideo');
+    var secvideo = document.getElementById('video');
+    var reproduit = false;
+
+    window.addEventListener('scroll', function() {
+      var rect = secvideo.getBoundingClientRect();
+      /* Quan la secció entra a la finestra i encara no ha reproduït */
+      if (rect.top < window.innerHeight && rect.bottom > 0 && !reproduit) {
+        video.play();
+        reproduit = true;
+      }
+    });
+    //Controls del personalitzats E4 
+    document.getElementById('btn_play').addEventListener('click', function() {
+      video.play();
+    });
+    document.getElementById('btn_pause').addEventListener('click', function() {
+      video.pause();
+    });
+    document.getElementById('btn_volum').addEventListener('click', function() {
+      video.muted = false;
+    });
+    document.getElementById('btn_silenci').addEventListener('click', function() {
+      video.muted = true;
+    });
+  </script>
   </body>
 </html>
